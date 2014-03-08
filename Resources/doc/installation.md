@@ -21,10 +21,10 @@ Add to composer.json
 public function registerBundles()
 {
     $bundles = array(
-        // Bundles required by FSiGalleryBundle
+        // Bundles required by FSiNewsBundle
         new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
 
-        // FSiGalleryBundle
+        // FSiNewsBundle
         new FSi\Bundle\NewsBundle\FSiNewsBundle(),
     );
 }
@@ -72,6 +72,6 @@ fsi_news:
     news_class: FSi\FixturesBundle\Entity\News
 ```
 
-You are now ready to read about [templating](templating.md) gallery
+You are now ready to read about [templating](templating.md) news
 
 
