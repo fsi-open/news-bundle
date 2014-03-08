@@ -1,0 +1,7 @@
+news:
+    resource: "@FSiNewsBundle/Resources/config/routing/news.yml"
+    prefix: /
+
+homepage:
+    path:     /
+    defaults: { _controller: FSiFixturesBundle:Homepage:index }
