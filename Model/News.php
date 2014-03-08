@@ -30,6 +30,14 @@ class News implements NewsInterface
     protected $content;
 
     /**
+     * @return int
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
      * @param string $content
      */
     public function setContent($content)

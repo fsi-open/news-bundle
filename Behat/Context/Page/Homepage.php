@@ -17,4 +17,9 @@ class Homepage extends Page
             $this->findAll('css', 'div#latest-news > div.news')
         );
     }
+
+    public function getFirstNews()
+    {
+        return $this->getElement('News');
+    }
 }

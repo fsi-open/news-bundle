@@ -5,6 +5,7 @@ namespace FSi\Bundle\NewsBundle\Controller;
 use FSi\Bundle\NewsBundle\Model\NewsRepositoryInterface;
 use Pagerfanta\Pagerfanta;
 use Symfony\Bundle\FrameworkBundle\Templating\EngineInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class NewsController
 {
@@ -56,10 +57,32 @@ class NewsController
     public function archiveAction($page)
     {
         $this->pager->setCurrentPage($page);
+
         return $this->templating->renderResponse(
             '@FSiNews/News/archive.html.twig',
             array(
                 'newsPager' => $this->pager
+            )
+        );
+    }
+
+    /**
+     * @param int $id
+     * @throws NotFoundHttpException
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function newsAction($id)
+    {
+        $news = $this->newsRepository->findNews($id);
+
+        if (!isset($news)) {
+            throw new NotFoundHttpException();
+        }
+
+        return $this->templating->renderResponse(
+            '@FSiNews/News/news.html.twig',
+            array(
+                'news' => $news
             )
         );
     }

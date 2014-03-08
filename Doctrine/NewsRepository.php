@@ -16,4 +16,13 @@ class NewsRepository extends EntityRepository implements NewsRepositoryInterface
     {
         return $this->findBy(array(), array('date' => 'ASC'), (int) $count);
     }
+
+    /**
+     * @param int $id
+     * @return mixed
+     */
+    public function findNews($id)
+    {
+        return $this->findOneBy(array('id' => $id));
+    }
 }

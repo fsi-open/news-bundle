@@ -4,6 +4,7 @@
         <div class="title">{{ news.title }}</div>
         <div class="date">{{ news.date|date("Y-m-d H:i:s") }}</div>
         <div class="introduction">{{ news.introduction }}</div>
+        <a href="{{ url('fsi_news', {'id': news.id}) }}">{{ 'news.read_more'|trans({}, 'FSiNewsBundle') }}</a>
     </div>
 {% endfor %}
 </div>

@@ -53,14 +53,6 @@ class WebUserContext extends PageObjectContext implements KernelAwareInterface
     }
 
     /**
-     * @return DataContext
-     */
-    private function getDataContext()
-    {
-        return $this->getMainContext()->getSubcontext('data');
-    }
-
-    /**
      * @Then /^I should see (\d+) news at list$/
      */
     public function iShouldSeeNewsAtList($newsCount)
@@ -91,5 +83,30 @@ class WebUserContext extends PageObjectContext implements KernelAwareInterface
     public function iPressPaginationButton($button)
     {
         $this->getPage('News Archive')->pressPaginationButton($button);
+    }
+
+    /**
+     * @When /^I follow "([^"]*)" link from first news$/
+     */
+    public function iFollowLinkFromFirstNews($link)
+    {
+        $this->getPage('Homepage')->getFirstNews()->clickLink($link);
+    }
+
+    /**
+     * @Then /^I should see news content$/
+     */
+    public function iShouldSeeNewsContent()
+    {
+        $newsContent = $this->getPage('News')->getNewsContent();
+        expect($this->getDataContext()->findFirstLatestNews()->getContent())->toBe($newsContent->getText());
+    }
+
+    /**
+     * @return DataContext
+     */
+    private function getDataContext()
+    {
+        return $this->getMainContext()->getSubcontext('data');
     }
 }

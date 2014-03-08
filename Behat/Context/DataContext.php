@@ -85,6 +85,17 @@ class DataContext extends BehatContext implements KernelAwareInterface
     }
 
     /**
+     * @return \FSi\FixturesBundle\Entity\News
+     */
+    public function findFirstLatestNews()
+    {
+        return $this->getDoctrine()
+            ->getManager()
+            ->getRepository('FSi\FixturesBundle\Entity\News')
+            ->findOneBy(array(), array('date' => 'ASC'));
+    }
+
+    /**
      * @return \Doctrine\Bundle\DoctrineBundle\Registry
      */
     public function getDoctrine()
