@@ -36,6 +36,10 @@ class Configuration implements ConfigurationInterface
                     ->cannotBeEmpty()
                 ->end()
                 ->scalarNode('news_class')->isRequired()->cannotBeEmpty()->end()
+                ->integerNode('news_per_page')
+                    ->defaultValue(5)
+                    ->min(1)
+                ->end()
             ->end();
 
         return $treeBuilder;

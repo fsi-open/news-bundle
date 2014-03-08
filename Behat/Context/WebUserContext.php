@@ -10,6 +10,7 @@
 namespace FSi\Bundle\NewsBundle\Behat\Context;
 
 use Behat\Behat\Exception\PendingException;
+use Behat\Gherkin\Node\TableNode;
 use Behat\Symfony2Extension\Context\KernelAwareInterface;
 use SensioLabs\Behat\PageObjectExtension\Context\PageObjectContext;
 use Symfony\Component\HttpKernel\KernelInterface;
@@ -33,6 +34,7 @@ class WebUserContext extends PageObjectContext implements KernelAwareInterface
 
     /**
      * @Given /^I am on the "([^"]*)" page$/
+     * @When /^I open "([^"]*)" page$/
      */
     public function iAmOnThePage($pageName)
     {
@@ -56,5 +58,38 @@ class WebUserContext extends PageObjectContext implements KernelAwareInterface
     private function getDataContext()
     {
         return $this->getMainContext()->getSubcontext('data');
+    }
+
+    /**
+     * @Then /^I should see (\d+) news at list$/
+     */
+    public function iShouldSeeNewsAtList($newsCount)
+    {
+        expect($this->getPage('News Archive')->getNewsCount())->toBe((int) $newsCount);
+    }
+
+    /**
+     * @Given /^I should see pagination with following buttons$/
+     */
+    public function iShouldSeePaginationWithFollowingButtons(TableNode $buttons)
+    {
+        $page = $this->getPage('News Archive');
+        expect($page->hasPagination())->toBe(true);
+
+        foreach ($buttons->getHash() as $buttonData) {
+            expect($page->hasPaginationButton($buttonData['Button']))->toBe(true);
+            expect($page->isButtonDisabled($buttonData['Button']))
+                ->toBe($buttonData['Disabled'] == 'true');
+            expect($page->isButtonCurrent($buttonData['Button']))
+                ->toBe($buttonData['Current'] == 'true');
+        }
+    }
+
+    /**
+     * @Given /^I press pagination "([^"]*)" button$/
+     */
+    public function iPressPaginationButton($button)
+    {
+        $this->getPage('News Archive')->pressPaginationButton($button);
     }
 }

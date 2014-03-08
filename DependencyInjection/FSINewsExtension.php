@@ -28,6 +28,7 @@ class FSINewsExtension extends Extension
         $config = $this->processConfiguration($configuration, $configs);
 
         $container->setParameter('fsi_news.news_class', $config['news_class']);
+        $container->setParameter('fsi_news.news_per_page', $config['news_per_page']);
 
         $loader = new XmlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.xml');

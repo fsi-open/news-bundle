@@ -12,8 +12,9 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Symfony\Bundle\TwigBundle\TwigBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
-            new FSi\Bundle\NewsBundle\FSiNewsBundle(),
             new FSi\FixturesBundle\FSiFixturesBundle(),
+            new WhiteOctober\PagerfantaBundle\WhiteOctoberPagerfantaBundle(),
+            new FSi\Bundle\NewsBundle\FSiNewsBundle(),
         );
     }
 

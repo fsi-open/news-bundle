@@ -11,6 +11,7 @@
         <service id="fsi_news.controller.news" class="%fsi_news.controller.news.class%">
             <argument type="service" id="templating" />
             <argument type="service" id="fsi_news.news_repository" />
+            <argument type="service" id="fsi_news.pagerfanta.news" />
         </service>
     </services>
 </container>

@@ -8,6 +8,8 @@
         <parameter key="fsi_news.orm.listeners.resolve_target_entity.class">Doctrine\ORM\Tools\ResolveTargetEntityListener</parameter>
         <parameter key="fsi_news.news_model_interface">FSi\Bundle\NewsBundle\Model\NewsInterface</parameter>
         <parameter key="fsi_news.news_repository.class">FSi\Bundle\NewsBundle\Doctrine\NewsRepository</parameter>
+        <parameter key="fsi_news.pagerfanta.adapter.class">FSi\Bundle\NewsBundle\Doctrine\Pagerfanta\ORMAdapter</parameter>
+        <parameter key="fsi_news.pagerfanta.news.class">Pagerfanta\Pagerfanta</parameter>
     </parameters>
     <services>
         <service id="fsi_news.news_repository"
@@ -15,6 +17,17 @@
                  factory-method="getRepository"
                  class="%fsi_news.news_repository.class%">
             <argument>%fsi_news.news_class%</argument>
+        </service>
+
+        <service id="fsi_news.pagerfanta.adapter" class="%fsi_news.pagerfanta.adapter.class%" public="false">
+            <argument type="service" id="fsi_news.news_repository" />
+        </service>
+
+        <service id="fsi_news.pagerfanta.news" class="%fsi_news.pagerfanta.news.class%">
+            <argument type="service" id="fsi_news.pagerfanta.adapter" />
+            <call method="setMaxPerPage">
+                <argument>%fsi_news.news_per_page%</argument>
+            </call>
         </service>
 
         <!-- Doctrine Listeners -->

@@ -1,0 +1,3 @@
+fsi_news_archive:
+    path: /news/archive/{page}
+    defaults: { _controller: fsi_news.controller.news:archiveAction, page: 1 }
