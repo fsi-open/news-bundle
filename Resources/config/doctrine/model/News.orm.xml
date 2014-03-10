@@ -8,7 +8,7 @@
             <generator strategy="AUTO" />
         </id>
         <field name="title" column="title" type="string" />
-        <field name="date" column="date" type="datetime" nullable="true"/>
+        <field name="date" column="date" type="datetime" />
         <field name="introduction" column="introduction" type="text" />
         <field name="content" column="content" type="text" />
     </mapped-superclass>
