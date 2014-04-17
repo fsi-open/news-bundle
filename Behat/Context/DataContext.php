@@ -81,7 +81,7 @@ class DataContext extends BehatContext implements KernelAwareInterface
         return $this->getDoctrine()
             ->getManager()
             ->getRepository('FSi\FixturesBundle\Entity\News')
-            ->findBy(array(), array('date' => 'ASC'));
+            ->findBy(array(), array('date' => 'DESC'));
     }
 
     /**
@@ -92,7 +92,7 @@ class DataContext extends BehatContext implements KernelAwareInterface
         return $this->getDoctrine()
             ->getManager()
             ->getRepository('FSi\FixturesBundle\Entity\News')
-            ->findOneBy(array(), array('date' => 'ASC'));
+            ->findOneBy(array(), array('date' => 'DESC'));
     }
 
     /**
