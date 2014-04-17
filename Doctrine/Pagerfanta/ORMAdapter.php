@@ -9,6 +9,6 @@ class ORMAdapter extends DoctrineORMAdapter
 {
     public function __construct(EntityRepository $entityRepository)
     {
-        parent::__construct($entityRepository->createQueryBuilder('news')->orderBy('news.date', 'ASC'));
+        parent::__construct($entityRepository->createQueryBuilder('news')->orderBy('news.date', 'DESC'));
     }
 }

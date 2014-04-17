@@ -14,7 +14,7 @@ class NewsRepository extends EntityRepository implements NewsRepositoryInterface
      */
     public function findLatestNews($count)
     {
-        return $this->findBy(array(), array('date' => 'ASC'), (int) $count);
+        return $this->findBy(array(), array('date' => 'DESC'), (int) $count);
     }
 
     /**
