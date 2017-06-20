@@ -1,3 +1,7 @@
+# THIS PACKAGE IS DEPRECATED
+
+Do not use this package, as it will not receive any updates and may be deleted in the future.
+
 # FSi News Bundle
 
 Provides news system for your Symfony2 application.
